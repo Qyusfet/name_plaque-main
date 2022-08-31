@@ -31,14 +31,15 @@ buyNow = () =>{
     alert('Enter your Custom letters')
     }
     
-    if (text.value ===''){
+    if (text.value ===''|| ' '){
     alert('Enter your letters')
     }
 
     else if (textlen.length > 15){
     userLetterPreviw.textContent = 'Max lenght exceeded'
     userLetterPreviw.style.fontSize = '20px'
-    alert('Sorry! You have exceed the number of available letter (Max is 15)')    
+    alert('Sorry! You have exceed the number of available letter (Max is 15)') 
+    text.value = ''   
     }
 
     else {
@@ -67,7 +68,8 @@ function buyNow()
     else if (textlen.length > 15){
     userLetterPreviw.textContent = 'Max lenght exceeded'
     userLetterPreviw.style.fontSize = '20px'
-    alert('Sorry! You have exceed the number of available letter (Max is 15)')    
+    alert('Sorry! You have exceed the number of available letter (Max is 15)')  
+    text.value = ''  
     }
 
     else {
