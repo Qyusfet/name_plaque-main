@@ -28,66 +28,75 @@ usrInput.oninput = (e)=>{
 //Project
 
 // Arrow function
-buyNow = () =>{
-    if (userLetterPreviw.textContent == 'Your Name'){
-    alert(String.fromCharCode(0x26A0) +'Enter your Custom letters')
+buyNow = () =>
+{
+  if (userLetterPreviw.textContent == 'Your Name')
+  {
+  alert(String.fromCharCode(0x26A0) +'Enter your Custom letters')
+  invoice.textContent = ''
+  }
 
-    invoice.textContent = ''
-    }
+  if (text.value ==='')
+  {
+  note.textContent = String.fromCharCode(0x26A0) + '  Enter your letters' + String.fromCharCode(9757)
+  note.style.color = 'red'
+  note.style.fontSize = '20px'
 
-    if (text.value ===''){
+  userLetterPreviw.textContent = 'Name not found'
+  userLetterPreviw.style = 'font-weight: 700'
+
+  invoice.textContent = ''
+
+  }
+
+  else if (text.value ==" "){
     note.textContent = String.fromCharCode(0x26A0) + '  Enter your letters' + String.fromCharCode(9757)
-    note.style.color = 'red'
-    note.style.fontSize = '20px'
+  note.style.color = 'red'
 
-    userLetterPreviw.textContent = 'Name not found'
-    userLetterPreviw.style = 'font-weight: 700'
+  userLetterPreviw.textContent = 'Name not found'
+  userLetterPreviw.style = 'font-weight: 700'
 
-    invoice.textContent = ''
+  invoice.textContent = ''
+  }
 
-    }
+  else if (text.value.length > 15){
+  userLetterPreviw.textContent = 'Max lenght exceeded'
+  userLetterPreviw.style = 'font-weight: 700'
 
-    else if (text.value ==" "){
-      note.textContent = String.fromCharCode(0x26A0) + '  Enter your letters' + String.fromCharCode(9757)
-    note.style.color = 'red'
+  note.textContent = String.fromCharCode(0x26A0) + '  Sorry'+ String.fromCharCode(10071) +' You have exceed the number of available letter (Max is 15)'
+  note.style.color = 'red'
+  text.value = '' 
+  
+  invoice.textContent = ''
+  }
 
-    userLetterPreviw.textContent = 'Name not found'
-    userLetterPreviw.style = 'font-weight: 700'
+  else 
+  {
+    note.textContent = String.fromCharCode(9989) + ' Success: Thank You ' + String.fromCharCode(9996)
+    note.style.color = 'blue'
 
-    invoice.textContent = ''
-    }
+    text.value = ''
 
-    else if (text.value.length > 15){
-    userLetterPreviw.textContent = 'Max lenght exceeded'
-    userLetterPreviw.style = 'font-weight: 700'
+    invoice.textContent = 'You have successfully place and order to print "'+ userLetterPreviw.textContent.toUpperCase() + '" at the cost of ' + userPricePreviw.textContent
 
-    note.textContent = String.fromCharCode(0x26A0) + '  Sorry'+ String.fromCharCode(10071) +' You have exceed the number of available letter (Max is 15)'
-    note.style.color = 'red'
-    text.value = '' 
-    
-    invoice.textContent = ''
-    }
+    // invoice.style.fontSize = '20px'
+    invoice.style = 'font-weight: 700'
+    // invoice.style.backgroundColor = 'yellow'
+    invoice.style.color = 'white'
+  }
 
-    else {
-      note.textContent = String.fromCharCode(9989) + ' Success: Thank You ' + String.fromCharCode(9996)
-      note.style.color = 'blue'
-      text.value = ''
+  cancel.style.display = 'block'
+  buy.style.display = 'none'
+  invoice.style.display = 'block'
+  text.disabled = true
 
-      invoice.textContent = 'You have successfully place and order to print "'+ userLetterPreviw.textContent.toUpperCase() + '" at the cost of ' + userPricePreviw.textContent
-
-      // invoice.style.fontSize = '20px'
-      invoice.style = 'font-weight: 700'
-      // invoice.style.backgroundColor = 'yellow'
-      invoice.style.color = 'white'
-    }
-
-    cancel.style.display = 'block'
-    buy.style.display = 'none'
-    invoice.style.display = 'block'
 }
+
+
 buy.addEventListener("click", buyNow);
 
 retry = () =>{
+  text.disabled = false
   buy.style.display = 'block'
   cancel.style.display = 'none'
   text.value = ''
