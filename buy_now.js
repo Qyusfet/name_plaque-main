@@ -7,6 +7,7 @@ const buy = document.getElementById("buyMe")
 const text = document.getElementById("guessField")
 const note = document.querySelector('.note')
 const invoice = document.querySelector('.invoice')
+const cancel = document.querySelector('.cancel')
 // var textlen= text.value - text.value.replaceAll(' ', '').length
 
 // Arrow function
@@ -37,9 +38,10 @@ buyNow = () =>{
     if (text.value ===''){
     note.textContent = String.fromCharCode(0x26A0) + '  Enter your letters' + String.fromCharCode(9757)
     note.style.color = 'red'
+    note.style.fontSize = '20px'
 
     userLetterPreviw.textContent = 'Name not found'
-    userLetterPreviw.style.fontSize = '20px'
+    userLetterPreviw.style = 'font-weight: 700'
 
     invoice.textContent = ''
 
@@ -50,14 +52,15 @@ buyNow = () =>{
     note.style.color = 'red'
 
     userLetterPreviw.textContent = 'Name not found'
-    userLetterPreviw.style.fontSize = '20px'
+    userLetterPreviw.style = 'font-weight: 700'
 
     invoice.textContent = ''
     }
 
     else if (text.value.length > 15){
     userLetterPreviw.textContent = 'Max lenght exceeded'
-    userLetterPreviw.style.fontSize = '20px'
+    userLetterPreviw.style = 'font-weight: 700'
+
     note.textContent = String.fromCharCode(0x26A0) + '  Sorry'+ String.fromCharCode(10071) +' You have exceed the number of available letter (Max is 15)'
     note.style.color = 'red'
     text.value = '' 
@@ -71,32 +74,34 @@ buyNow = () =>{
       text.value = ''
 
       invoice.textContent = 'You have successfully place and order to print "'+ userLetterPreviw.textContent.toUpperCase() + '" at the cost of ' + userPricePreviw.textContent
+
+      // invoice.style.fontSize = '20px'
+      invoice.style = 'font-weight: 700'
+      // invoice.style.backgroundColor = 'yellow'
+      invoice.style.color = 'white'
     }
+
+    cancel.style.display = 'block'
+    buy.style.display = 'none'
+    invoice.style.display = 'block'
 }
 buy.addEventListener("click", buyNow);
 
+retry = () =>{
+  buy.style.display = 'block'
+  cancel.style.display = 'none'
+  text.value = ''
+  note.textContent = ''
+  invoice.textContent = ''
+  userPricePreviw.textContent = '$'+ ''
+  userLetterPreviw.textContent = 'Your Name'
 
+  userLetterPreviw.style = 'font-family: Courier',
+  'font-weight: 700'
 
-// Using default function
-/*
-buy.addEventListener("click", buyNow);
-function buyNow()
-{
-    if (userLetterPreviw.textContent == 'Your Name'){
-    alert('Enter your Custom letters')
-    }
-    
-    if (text.value ===''){
-    alert('Enter your letters')
-    }
-    else if (textlen.length > 15){
-    userLetterPreviw.textContent = 'Max lenght exceeded'
-    userLetterPreviw.style.fontSize = '20px'
-    alert('Sorry! You have exceed the number of available letter (Max is 15)')    
-    }
-    else {
-        alert('Success: Thank You')
-        text.value = ''
-    }
+  invoice.style.display = 'none'
 }
-*/ 
+
+cancel.addEventListener("click", retry);
+
+
